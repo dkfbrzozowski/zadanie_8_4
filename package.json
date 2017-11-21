@@ -1,0 +1,33 @@
+{
+  "name": "zadanie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test:html && npm run test:js",
+    "test:html": "nu-html-checker *.html",
+    "test:js": "jshint js/*.js",
+    "build": "npm run build:clean && npm run build:scss && npm run build:autoprefixer && npm run test",
+    "build:clean": "rimraf css/*.css",
+    "build:scss": "scss --sourcemap=none --update scss:css",
+    "build:autoprefixer": "autoprefixer-cli css/style.css",
+    "watch": "parallelshell \"npm run watch:scss\" \"npm run watch:browsersync\" ",
+    "watch:scssprefixer": "onchange -d 100 scss/*.scss -- scss --update scss:css -- autoprefixer-cli -o css/style.prefixed.css css/style.css",
+    "watch:browsersync": "browser-sync start --server --files \"css/*.css\" \"*.html\" "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer-cli": "^1.0.0",
+    "browser-sync": "^2.18.13",
+    "jshint": "^2.9.5",
+    "node-sass": "^4.7.1",
+    "nu-html-checker": "^0.1.0",
+    "onchange": "^3.2.1",
+    "parallelshell": "^3.0.2",
+    "rimraf": "^2.6.2",
+    "sass": "^1.0.0-beta.3",
+    "scss": "^0.2.4"
+  }
+}
